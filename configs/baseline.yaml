@@ -1,0 +1,37 @@
+# Federated Learning FedAvg Baseline Configuration
+experiment:
+  name: "fedavg_mnist_baseline"
+  seed: 42
+  device: "auto" # "cpu", "cuda", or "auto"
+  output_dir: "./results"
+
+dataset:
+  name: "mnist" # "mnist", "fashion_mnist"
+  data_dir: "./data"
+  num_clients: 5
+  partition_strategy: "dirichlet" # "dirichlet", "shard", "iid"
+  dirichlet_alpha: 0.5
+  test_split_ratio: 0.2
+  val_split_ratio: 0.1
+
+model:
+  architecture: "cnn" # "cnn" (standard 2-layer ConvNet as in McMahan et al. 2017) or "mlp"
+  in_channels: 1
+  num_classes: 10
+
+federated:
+  algorithm: "fedavg"
+  num_rounds: 10
+  client_fraction: 1.0 # Fraction of clients participating per round (1.0 = all)
+  local_epochs: 2
+  batch_size: 32
+  learning_rate: 0.01
+  momentum: 0.9
+  weight_decay: 0.0001
+  optimizer: "sgd" # "sgd" or "adam"
+  criterion: "cross_entropy"
+
+logging:
+  log_level: "INFO"
+  save_models: true
+  save_per_round_metrics: true
