@@ -61,7 +61,7 @@ class DDMDetector(BaseDriftDetector):
 
         # Incremental update of error rate mean
         self.p = self.p + (err - self.p) / self.total_samples
-        self.s = math.sqrt(max(self.p * (1.0 - self.p) / self.total_samples, 0.0))
+        self.s = max(math.sqrt(max(self.p * (1.0 - self.p) / self.total_samples, 0.0)), 0.005)
 
         if self.total_samples < self.min_instances:
             return False
