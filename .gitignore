@@ -10,6 +10,9 @@ env/
 
 # Research papers and PDFs
 *.pdf
+*.pptx
+Presentation_Script.md
+experiments/generate_presentation.py
 actual_paper/
 compressed/
 
